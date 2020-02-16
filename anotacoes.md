@@ -60,3 +60,9 @@ Mock: Simular o comportamento de alguma funcionalidade da nossa aplicação.
 Precisamos testar se o comportamento está ocorrendo e não se a funcionalidade está funcionando corretamente
 
 Conseguimos simular como nossa aplicação deve-se comportar de uma forma bem legal e poderosa do jest
+
+## Coverage reports
+
+Na pasta de arquivo gerado tem uma pasta icov-report/index.html que consigo ter mais detalhes do que faltou ser testados e cobrido nas linhas de testes
+
+Isso dá uma visão do que foi testado e o que faltou testar na aplicação
