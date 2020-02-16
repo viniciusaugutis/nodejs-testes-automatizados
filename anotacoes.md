@@ -25,3 +25,9 @@ Para produtivo é utilizado o próprio posgres (ou outro cliente de banco de dad
 ## Sequelize
 
 yarn sequelize init
+
+O sqlite não precisa de usuário e senha, por isso preciso apenas do dialecto dentro do arquivo .env.test
+
+yarn sequelize migration:create --name=create-users: Criar migração para usuário
+
+yarn sequelize db:migrate: Executar a migração
