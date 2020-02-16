@@ -1,4 +1,4 @@
-NodeJS com Jest
+NodeJS com Jest e testes automatizados
 
 ## Tecnologias
 
