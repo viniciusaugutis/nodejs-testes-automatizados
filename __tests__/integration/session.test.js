@@ -25,7 +25,7 @@ describe('Authentication', () => {
     expect(response.status).toBe(200);
   });
 
-  it('should not be able to authenticate with invalid credentials', async () => {
+  it('should return jwt token when authenticated', async () => {
     const user = await User.create({
       name: 'Vinícius',
       email: 'vinicius_augutis@hotmail.com',
@@ -35,9 +35,46 @@ describe('Authentication', () => {
       .post('/sessions')
       .send({
         email: user.email,
-        password: '123456789',
+        password: '123456',
       });
 
-    expect(response.status).toBe(401);
+    expect(response.body).toHaveProperty('token');
   });
+
+  it('should return jwt token when authenticated', async () => {
+    const user = await User.create({
+      name: 'Vinícius',
+      email: 'vinicius_augutis@hotmail.com',
+      password: '123456',
+    });
+    const response = await request(app)
+      .post('/sessions')
+      .send({
+        email: user.email,
+        password: '123456',
+      });
+
+    expect(response.body).toHaveProperty('token');
+  });
+
+  it('should be able to acess private routes when authenticated', async () => {
+    const user = await User.create({
+      name: 'Vinícius',
+      email: 'vinicius_augutis@hotmail.com',
+      password: '123456',
+    });
+    const response = await request(app)
+      .get('/dashboard')
+      .set('Authorization', `Bearer ${user.generateToken()}`);
+
+    expect(response.status).toBe(200);
+  });
+
+  /*it('should not be able to acess private routes when not authenticated', async () => {
+    const response = await request(app)
+      .get('/dashboard')
+      .set('Authorization', `Bearer ${user.generateToken()}`);
+
+    expect(response.status).toBe(401);
+  });*/
 });

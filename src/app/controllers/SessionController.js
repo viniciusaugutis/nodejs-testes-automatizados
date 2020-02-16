@@ -13,7 +13,9 @@ class SessionController {
       return res.status(401).json({ message: 'Incorret password' });
     }
 
-    return res.status(200).send();
+    return res.json({
+      token: await user.generateToken(),
+    });
   }
 }
 module.exports = new SessionController();
