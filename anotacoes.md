@@ -53,3 +53,10 @@ beforeAll, afterAll: executa antes e depois de todos os testes
 yarn add factory-girl -D
 
 yarn add faker -D: ele gera dados aleatórios para nós
+
+## Mocks
+
+Mock: Simular o comportamento de alguma funcionalidade da nossa aplicação.
+Precisamos testar se o comportamento está ocorrendo e não se a funcionalidade está funcionando corretamente
+
+Conseguimos simular como nossa aplicação deve-se comportar de uma forma bem legal e poderosa do jest
