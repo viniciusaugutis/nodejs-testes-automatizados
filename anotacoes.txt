@@ -1,0 +1,3 @@
+Para ambiente de desenvolvimento usamos o sqlite3 para rodar os testes.
+Para produtivo é utilizado o próprio posgres (ou outro cliente de banco de dados como SQLServer).
+
