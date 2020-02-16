@@ -35,8 +35,8 @@ yarn sequelize db:migrate: Executar a migração
 
 ## Testes com Jest
 
-pasta integration: testes de integração
-pasta unit: testes unitários
+pasta integration: testes de integração: São testes que precisam acessar um banco de dados e uma API específica
+pasta unit: testes unitários: São testes que não precisam acessar um banco de dados e nem uma API específica
 
 Describe: categorias de testes
 it: para descrever um teste
