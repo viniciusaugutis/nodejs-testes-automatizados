@@ -44,3 +44,6 @@ it: para descrever um teste
 Cria um teste por vez e vai ate aquele teste funcionar, para ai sim ir para o próximo. (Isso é TDD)
 
 Lib supertest: substitui o axios. Ela consegue fazer requisições para api sem startar o servidor express.
+
+BeforeEach, AfterEach: executa depois de cada teste
+beforeAll, afterAll: executa antes e depois de todos os testes
