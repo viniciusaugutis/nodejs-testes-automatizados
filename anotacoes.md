@@ -31,3 +31,16 @@ O sqlite não precisa de usuário e senha, por isso preciso apenas do dialecto d
 yarn sequelize migration:create --name=create-users: Criar migração para usuário
 
 yarn sequelize db:migrate: Executar a migração
+
+
+## Testes com Jest
+
+pasta integration: testes de integração
+pasta unit: testes unitários
+
+Describe: categorias de testes
+it: para descrever um teste
+
+Cria um teste por vez e vai ate aquele teste funcionar, para ai sim ir para o próximo. (Isso é TDD)
+
+Lib supertest: substitui o axios. Ela consegue fazer requisições para api sem startar o servidor express.
