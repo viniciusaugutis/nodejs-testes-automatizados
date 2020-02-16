@@ -1,8 +1,8 @@
-const { User } = require('../../src/app/models');
 const request = require('supertest');
 const app = require('../../src/app');
 
 const truncate = require('../utils/truncate');
+const factory = require('../utils/factories');
 
 describe('Authentication', () => {
   beforeEach(async () => {
@@ -10,11 +10,7 @@ describe('Authentication', () => {
   });
 
   it('should be able to authenticate with valid credentials', async () => {
-    const user = await User.create({
-      name: 'Vinícius',
-      email: 'vinicius_augutis@hotmail.com',
-      password: '123456',
-    });
+    const user = await factory.create('User', { password: '123456' });
     const response = await request(app)
       .post('/sessions')
       .send({
@@ -25,12 +21,8 @@ describe('Authentication', () => {
     expect(response.status).toBe(200);
   });
 
-  it('should return jwt token when authenticated', async () => {
-    const user = await User.create({
-      name: 'Vinícius',
-      email: 'vinicius_augutis@hotmail.com',
-      password: '123456',
-    });
+  it('should not be able to authenticate with invalid credentials', async () => {
+    const user = await factory.create('User', { password: '123456789' });
     const response = await request(app)
       .post('/sessions')
       .send({
@@ -38,15 +30,12 @@ describe('Authentication', () => {
         password: '123456',
       });
 
-    expect(response.body).toHaveProperty('token');
+    expect(response.status).toBe(401);
   });
 
   it('should return jwt token when authenticated', async () => {
-    const user = await User.create({
-      name: 'Vinícius',
-      email: 'vinicius_augutis@hotmail.com',
-      password: '123456',
-    });
+    const user = await factory.create('User', { password: '123456' });
+
     const response = await request(app)
       .post('/sessions')
       .send({
@@ -58,11 +47,8 @@ describe('Authentication', () => {
   });
 
   it('should be able to acess private routes when authenticated', async () => {
-    const user = await User.create({
-      name: 'Vinícius',
-      email: 'vinicius_augutis@hotmail.com',
-      password: '123456',
-    });
+    const user = await factory.create('User');
+
     const response = await request(app)
       .get('/dashboard')
       .set('Authorization', `Bearer ${user.generateToken()}`);

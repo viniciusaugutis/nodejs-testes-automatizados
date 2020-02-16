@@ -47,3 +47,9 @@ Lib supertest: substitui o axios. Ela consegue fazer requisições para api sem 
 
 BeforeEach, AfterEach: executa depois de cada teste
 beforeAll, afterAll: executa antes e depois de todos os testes
+
+## Factory Girl + Faker
+
+yarn add factory-girl -D
+
+yarn add faker -D: ele gera dados aleatórios para nós
