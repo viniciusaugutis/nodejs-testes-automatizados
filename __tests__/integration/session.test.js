@@ -70,11 +70,17 @@ describe('Authentication', () => {
     expect(response.status).toBe(200);
   });
 
-  /*it('should not be able to acess private routes when not authenticated', async () => {
-    const response = await request(app)
-      .get('/dashboard')
-      .set('Authorization', `Bearer ${user.generateToken()}`);
+  it('should not be able to acess private routes when not authenticated', async () => {
+    const response = await request(app).get('/dashboard');
 
     expect(response.status).toBe(401);
-  });*/
+  });
+
+  it('should not be able to acess private routes when token not valid', async () => {
+    const response = await request(app)
+      .get('/dashboard')
+      .set('Authorization', `Bearer 123123`);
+
+    expect(response.status).toBe(401);
+  });
 });

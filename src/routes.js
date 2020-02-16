@@ -1,6 +1,7 @@
 const routes = require('express').Router();
 const { User } = require('./app/models');
 const SessionController = require('./app/controllers/SessionController');
+const authMiddleware = require('./app/middlewares/auth');
 
 routes.get('/', (req, res) => {
   const user = User.create({
@@ -12,6 +13,8 @@ routes.get('/', (req, res) => {
 });
 
 routes.post('/sessions', SessionController.store);
+
+routes.use(authMiddleware);
 
 routes.get('/dashboard', (req, res) => {
   res.status(200).send();
